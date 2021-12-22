@@ -1,13 +1,14 @@
 const { MongoClient } = require('mongodb');
-//const user = "user";
-//const pass = "pass";
-const ip = "localhost:27017";
-const db = "DofusData"
-const options = "?maxPoolSize=20";
 
-var uri = `mongodb://${ip}/${db}${options}`;
+config = {
+  host: "localhost:27017",
+  db: "Dofus",
+  options: "?maxPoolSize=20"
+}
 
-const client = new MongoClient(uri);
+const url = `mongodb://${config.host}/${config.db}${config.options}`;
+
+const client = new MongoClient(url);
 
 async function run() {
     try {
