@@ -1,3 +1,7 @@
+#!/usr/bin/python
+# coding=utf-8
+
+from typing import Any
 from pydantic import BaseModel
 
 class Item(BaseModel):
@@ -5,7 +9,7 @@ class Item(BaseModel):
     name: str
 
 class Almanax(BaseModel):
-    date: str
+    date: Any
     url: str
     bonus: str
     quest: str
