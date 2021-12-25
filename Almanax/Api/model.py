@@ -7,6 +7,7 @@ from pydantic import BaseModel
 class Item(BaseModel):
     quantity: str
     name: str
+    img: str
 
 class Almanax(BaseModel):
     date: Any
