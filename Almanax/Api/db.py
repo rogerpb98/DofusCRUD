@@ -13,7 +13,7 @@ collection = database.Almanax
 async def fetch_all_almanax():
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find({ "date": { "$gte": today_date } }).sort({"_id":1})
+    cursor = collection.find({ "date": { "$gte": today_date } }).sort("_id")
     async for x in cursor:
         list.append(Almanax(**x))
     return list
@@ -29,7 +29,7 @@ async def fetch_today():
 async def fetch_tomorrow():
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find({ "date": { "$gt": today_date } }).sort({"_id":1}).limit(1)
+    cursor = collection.find({ "date": { "$gt": today_date } }).sort("_id").limit(1)
     async for x in cursor:
         list.append(Almanax(**x))
     return list
@@ -37,7 +37,7 @@ async def fetch_tomorrow():
 async def fetch_week():
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find({ "date": { "$gt": today_date } }).sort({"_id":1}).limit(7)
+    cursor = collection.find({ "date": { "$gt": today_date } }).sort("_id").limit(7)
     async for x in cursor:
         list.append(Almanax(**x))
     return list
@@ -45,7 +45,7 @@ async def fetch_week():
 async def fetch_next_almanax_variable(limit):
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find({ "date": { "$gt": today_date } }).sort({"_id":1}).limit(limit)
+    cursor = collection.find({ "date": { "$gt": today_date } }).sort("_id").limit(limit)
     async for x in cursor:
         list.append(Almanax(**x))
     return list
@@ -53,7 +53,7 @@ async def fetch_next_almanax_variable(limit):
 async def fetch_all_from_category(category):
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort({"_id":1})
+    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort("_id")
     async for x in cursor:
         list.append(Almanax(**x))
     return list
@@ -61,7 +61,7 @@ async def fetch_all_from_category(category):
 async def fetch_next_from_category(category):
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort({"_id":1}).limit(1)
+    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort("_id").limit(1)
     async for x in cursor:
         list.append(Almanax(**x))
     return list
@@ -69,7 +69,7 @@ async def fetch_next_from_category(category):
 async def fetch_ten_from_category(category):
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort({"_id":1}).limit(10)
+    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort("_id").limit(10)
     async for x in cursor:
         list.append(Almanax(**x))
     return list
@@ -77,7 +77,7 @@ async def fetch_ten_from_category(category):
 async def fetch_multiple_from_category(category, limit):
     today_date = datetime.today().strftime("%Y-%m-%d")
     list = []
-    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort({"_id":1}).limit(limit)
+    cursor = collection.find( { "$and": [ { "date": { "$gt": today_date } }, { "categories": {"$in": [category] } }] } ).sort("_id").limit(limit)
     async for x in cursor:
         list.append(Almanax(**x))
     return list
